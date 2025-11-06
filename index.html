@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Combinatorics Visualizer</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <h1>Combinatorics Visualizer</h1>
+    <p>Explore combinations and permutations interactively!</p>
+  </header>
+
+  <main>
+    <div class="controls">
+      <label>n (total objects): <input type="number" id="n" min="1" value="5" /></label>
+      <label>r (chosen objects): <input type="number" id="r" min="1" value="3" /></label>
+
+      <select id="mode">
+        <option value="combination">Combination (nCr)</option>
+        <option value="permutation">Permutation (nPr)</option>
+      </select>
+
+      <button id="generateBtn">Generate</button>
+    </div>
+
+    <section id="results">
+      <h2>Result:</h2>
+      <p id="formula"></p>
+      <p id="count"></p>
+      <div id="visual"></div>
+    </section>
+  </main>
+
+  <footer>
+    <p>Connor Spendlove</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
