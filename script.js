@@ -1,3 +1,4 @@
+// --- Math Helpers ---
 function factorial(n) {
   return n <= 1 ? 1 : n * factorial(n - 1);
 }
@@ -18,6 +19,19 @@ function permutations(arr, r) {
   );
 }
 
+// --- Dynamic Color Generator ---
+// Deterministic: given n elements, spread hues evenly around the color wheel
+function generateColorMap(elements) {
+  const colorMap = {};
+  const total = elements.length;
+  elements.forEach((el, i) => {
+    const hue = Math.round((360 / total) * i);
+    colorMap[el] = `hsl(${hue}, 80%, 60%)`;
+  });
+  return colorMap;
+}
+
+// --- UI Handler ---
 document.getElementById("generateBtn").addEventListener("click", () => {
   const n = parseInt(document.getElementById("n").value);
   const r = parseInt(document.getElementById("r").value);
@@ -29,7 +43,17 @@ document.getElementById("generateBtn").addEventListener("click", () => {
     return;
   }
 
-  const elements = Array.from({ length: n }, (_, i) => String.fromCharCode(65 + i));
+  // Generate element names dynamically
+  const elements = Array.from({ length: n }, (_, i) => {
+    // Use letters first, then continue with indexed labels if > 26
+    return i < 26
+      ? String.fromCharCode(65 + i)
+      : `X${i + 1}`; // e.g. X27, X28, etc.
+  });
+
+  // Generate deterministic color map
+  const colorMap = generateColorMap(elements);
+
   let sets = [];
   let count = 0;
 
@@ -48,6 +72,29 @@ document.getElementById("generateBtn").addEventListener("click", () => {
 
   document.getElementById("count").textContent = `There are ${count} possible outcomes.`;
 
+  // --- Display the full set at the top ---
+  const results = document.getElementById("results");
+  let setDisplay = document.getElementById("setDisplay");
+  if (!setDisplay) {
+    setDisplay = document.createElement("div");
+    setDisplay.id = "setDisplay";
+    setDisplay.style.marginBottom = "1rem";
+    results.prepend(setDisplay);
+  }
+
+  setDisplay.innerHTML = `<h3>Current Set:</h3>`;
+  const setContainer = document.createElement("div");
+  setContainer.className = "combo-box";
+  elements.forEach((el) => {
+    const ball = document.createElement("div");
+    ball.className = "ball";
+    ball.style.setProperty("--ball-color", colorMap[el]);
+    ball.textContent = el;
+    setContainer.appendChild(ball);
+  });
+  setDisplay.appendChild(setContainer);
+
+  // --- Visualize the combinations/permutations ---
   visual.innerHTML = "";
 
   sets.forEach((set, i) => {
@@ -56,17 +103,12 @@ document.getElementById("generateBtn").addEventListener("click", () => {
     set.forEach((val) => {
       const ball = document.createElement("div");
       ball.className = "ball";
-      ball.style.setProperty("--ball-color", getRandomColor());
+      ball.style.setProperty("--ball-color", colorMap[val]);
       ball.textContent = val;
       div.appendChild(ball);
     });
 
-    // Small delay for animation effect
-    setTimeout(() => visual.appendChild(div), i * 100);
+    // Small delay for animation cascade
+    setTimeout(() => visual.appendChild(div), i * 70);
   });
 });
-
-function getRandomColor() {
-  const colors = ["#72a1e5", "#54428e", "#ff7eb9", "#ff65a3", "#7afcff", "#f0bb0cff"];
-  return colors[Math.floor(Math.random() * colors.length)];
-}
