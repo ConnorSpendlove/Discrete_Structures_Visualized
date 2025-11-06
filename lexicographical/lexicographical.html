@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lexicographical Ordering Simulator</title>
+<link rel="stylesheet" href="lexicographical.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/Flip.min.js"></script>
+
+
+</head>
+<body>
+  <header>
+    <h1>Lexicographical Ordering Simulator</h1>
+    <p>Explore the next permutations of a number in lexicographical order.</p>
+  </header>
+  
+  <main>
+    <div class="controls">
+      <input type="text" id="numberInput" maxlength="10" placeholder="Enter number (up to 10 digits)">
+      <input type="number" id="setsInput" min="1" value="5" placeholder="Number of sets to show">
+      <button id="generateBtn">Generate</button>
+    </div>
+    
+    <section id="results"></section>
+  </main>
+  
+  <!-- Modal for tutorial animation -->
+  <div id="tutorialModal" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <h2>Tutorial: Next Permutation</h2>
+      <div id="tutorialVisual"></div>
+    </div>
+  </div>
+  
+  <script src="lexicographical.js"></script>
+</body>
+</html>
