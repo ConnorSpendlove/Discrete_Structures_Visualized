@@ -20,7 +20,6 @@ function permutations(arr, r) {
 }
 
 // --- Dynamic Color Generator ---
-// Deterministic: given n elements, spread hues evenly around the color wheel
 function generateColorMap(elements) {
   const colorMap = {};
   const total = elements.length;
@@ -31,7 +30,98 @@ function generateColorMap(elements) {
   return colorMap;
 }
 
-// --- UI Handler ---
+// --- Global State ---
+let currentGeneration = 0;
+let customNames = [];
+let setType = "letters"; // default
+
+// --- Update Set Display ---
+function updateSetDisplay() {
+  const n = parseInt(document.getElementById("n").value);
+  if (!n || n < 1) return;
+
+  let elements;
+  if (setType === "letters") {
+    elements = Array.from({ length: n }, (_, i) => i < 26 ? String.fromCharCode(65 + i) : `X${i+1}`);
+    customNames = [];
+  } else if (setType === "numbers") {
+    elements = Array.from({ length: n }, (_, i) => (i + 1).toString());
+    customNames = [];
+  } else {
+    // For custom, fill any missing values
+    elements = Array.from({ length: n }, (_, i) => customNames[i] || `X${i+1}`);
+    customNames = [...elements];
+  }
+
+  const colorMap = generateColorMap(elements);
+
+  // --- Clear and redraw the setDisplay ---
+  const setDisplay = document.getElementById("setDisplay");
+  setDisplay.innerHTML = `<h3>Current Set:</h3>`;
+  const container = document.createElement("div");
+  container.className = "combo-box";
+
+  if (setType === "custom") {
+    elements.forEach((el, i) => {
+      const input = document.createElement("input");
+      input.value = el;
+      input.className = "name-input";
+      input.style.setProperty("--ball-color", colorMap[el]);
+
+      // Update customNames on input without rebuilding the inputs
+      input.addEventListener("input", (e) => {
+        customNames[i] = e.target.value;
+        // live-update display balls above (optional)
+        updateSetDisplayBallsOnly();
+      });
+
+      // Arrow key navigation
+      input.addEventListener("keydown", (e) => {
+        if (e.key === "ArrowRight" && i < elements.length - 1) {
+          e.preventDefault();
+          container.children[i + 1].focus();
+        } else if (e.key === "ArrowLeft" && i > 0) {
+          e.preventDefault();
+          container.children[i - 1].focus();
+        }
+      });
+
+      container.appendChild(input);
+    });
+  } else {
+    elements.forEach(el => {
+      const ball = document.createElement("div");
+      ball.className = "ball";
+      ball.style.setProperty("--ball-color", colorMap[el]);
+      ball.textContent = el;
+      container.appendChild(ball);
+    });
+  }
+
+  setDisplay.appendChild(container);
+  return elements;
+}
+
+// --- Update only the display balls above the editor (custom live update) ---
+function updateSetDisplayBallsOnly() {
+  if (setType !== "custom") return;
+  const setDisplay = document.getElementById("setDisplay");
+  const container = setDisplay.querySelector(".combo-box");
+  if (!container) return;
+  const colorMap = generateColorMap(customNames);
+  container.querySelectorAll(".name-input").forEach((input, i) => {
+    input.style.setProperty("--ball-color", colorMap[customNames[i]]);
+  });
+}
+
+// --- Event Listeners ---
+document.getElementById("n").addEventListener("input", updateSetDisplay);
+document.getElementById("setType").addEventListener("change", (e) => {
+  setType = e.target.value;
+  updateSetDisplay();
+});
+
+// --- Generate Combinations / Permutations ---
 document.getElementById("generateBtn").addEventListener("click", () => {
   const n = parseInt(document.getElementById("n").value);
   const r = parseInt(document.getElementById("r").value);
@@ -43,20 +133,22 @@ document.getElementById("generateBtn").addEventListener("click", () => {
     return;
   }
 
-  // Generate element names dynamically
-  const elements = Array.from({ length: n }, (_, i) => {
-    // Use letters first, then continue with indexed labels if > 26
-    return i < 26
-      ? String.fromCharCode(65 + i)
-      : `X${i + 1}`; // e.g. X27, X28, etc.
-  });
+  currentGeneration++;
+  const genID = currentGeneration;
 
-  // Generate deterministic color map
+  let elements;
+  if (setType === "letters") {
+    elements = Array.from({ length: n }, (_, i) => i < 26 ? String.fromCharCode(65 + i) : `X${i+1}`);
+  } else if (setType === "numbers") {
+    elements = Array.from({ length: n }, (_, i) => (i + 1).toString());
+  } else {
+    elements = [...customNames];
+  }
+
   const colorMap = generateColorMap(elements);
 
   let sets = [];
   let count = 0;
-
   if (mode === "combination") {
     sets = combinations(elements, r);
     count = factorial(n) / (factorial(r) * factorial(n - r));
@@ -69,34 +161,10 @@ document.getElementById("generateBtn").addEventListener("click", () => {
     mode === "combination"
       ? `C(${n}, ${r}) = n! / [r!(n - r)!]`
       : `P(${n}, ${r}) = n! / (n - r)!`;
-
   document.getElementById("count").textContent = `There are ${count} possible outcomes.`;
 
-  // --- Display the full set at the top ---
-  const results = document.getElementById("results");
-  let setDisplay = document.getElementById("setDisplay");
-  if (!setDisplay) {
-    setDisplay = document.createElement("div");
-    setDisplay.id = "setDisplay";
-    setDisplay.style.marginBottom = "1rem";
-    results.prepend(setDisplay);
-  }
-
-  setDisplay.innerHTML = `<h3>Current Set:</h3>`;
-  const setContainer = document.createElement("div");
-  setContainer.className = "combo-box";
-  elements.forEach((el) => {
-    const ball = document.createElement("div");
-    ball.className = "ball";
-    ball.style.setProperty("--ball-color", colorMap[el]);
-    ball.textContent = el;
-    setContainer.appendChild(ball);
-  });
-  setDisplay.appendChild(setContainer);
-
-  // --- Visualize the combinations/permutations ---
+  // Visualize results
   visual.innerHTML = "";
-
   sets.forEach((set, i) => {
     const div = document.createElement("div");
     div.className = "combo-box";
@@ -108,7 +176,13 @@ document.getElementById("generateBtn").addEventListener("click", () => {
       div.appendChild(ball);
     });
 
-    // Small delay for animation cascade
-    setTimeout(() => visual.appendChild(div), i * 70);
+    setTimeout(() => {
+      if (genID === currentGeneration) visual.appendChild(div);
+    }, i * 50);
   });
+});
+
+// --- Initialize display on page load ---
+window.addEventListener("DOMContentLoaded", () => {
+  updateSetDisplay();
 });

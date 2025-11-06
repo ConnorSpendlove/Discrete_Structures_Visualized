@@ -29,6 +29,15 @@
           <option value="permutation">Permutations (nPr)</option>
         </select>
       </div>
+      <div class="input-group">
+        <label for="setType">Set Type:</label>
+        <select id="setType">
+            <option value="letters">Letters (A, B, C...)</option>
+            <option value="numbers">Numbers (1, 2, 3...)</option>
+            <option value="custom">Custom</option>
+        </select>
+        </div>
+
       <button id="generateBtn">Generate</button>
     </div>
 
@@ -36,6 +45,8 @@
       <h2 id="formulaTitle">Result:</h2>
       <p id="formula"></p>
       <p id="count"></p>
+      <div id="setDisplay"></div>
+      <div id="setEditor" style="display:none;"></div>
       <div id="visual"></div>
     </section>
   </main>

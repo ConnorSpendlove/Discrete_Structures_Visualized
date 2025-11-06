@@ -67,7 +67,7 @@ button:hover {
 #results {
   margin-top: 2rem;
   text-align: center;
-  width: 90%;
+  width: 100%;
   max-width: 800px;
 }
 
@@ -119,6 +119,25 @@ button:hover {
   justify-content: center;
   flex-wrap: wrap;
 }
+
+.name-input {
+  width: 45px;
+  height: 45px;
+  text-align: center;
+  border-radius: 50%;
+  border: none;
+  color: white;
+  font-weight: bold;
+  margin: 0 4px;
+  background-color: var(--ball-color);
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+  transition: transform 0.2s;
+}
+.name-input:focus {
+  outline: 2px solid white;
+  transform: scale(1.1);
+}
+
 
 
 @keyframes bounceIn {
