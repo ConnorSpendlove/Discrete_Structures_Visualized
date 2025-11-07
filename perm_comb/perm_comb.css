@@ -1,32 +1,18 @@
-body {
-  font-family: 'Poppins', sans-serif;
-  background: linear-gradient(160deg, #14110f, #1e0a74);
-  color: #fcf7ff;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  min-height: 100vh;
-  margin: 0;
-  overflow-x: hidden;
-}
+/* perm_comb.css */
 
-header {
-  text-align: center;
-  margin-top: 2rem;
-  animation: fadeIn 1s ease;
-}
-
+/* Controls container */
 .controls {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   gap: 1.5rem;
-  background: rgba(255,255,255,0.05);
+  background: rgba(255, 255, 255, 0.05);
   padding: 1.5rem;
   border-radius: 1rem;
   backdrop-filter: blur(5px);
 }
 
+/* Input groups */
 .input-group {
   display: flex;
   flex-direction: column;
@@ -38,60 +24,38 @@ label {
   margin-bottom: 0.3rem;
 }
 
-input, select, button {
-  padding: 0.6rem 1rem;
-  border-radius: 10px;
-  border: none;
-  font-size: 1rem;
-  outline: none;
-}
-
-input, select {
-  background: #fcf7ff;
-  color: #14110f;
-}
-
-button {
-  background: #72a1e5;
-  color: #14110f;
-  font-weight: bold;
-  cursor: pointer;
-  transition: 0.2s ease;
-}
-
-button:hover {
-  background: #54428e;
-  color: #fcf7ff;
-}
-
+/* Result area */
 #results {
   margin-top: 2rem;
   text-align: center;
   width: 100%;
-  
 }
 
+/* Visual representation of numbers/balls */
 #visual {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   gap: 1rem;
   margin-top: 1.5rem;
-  max-width: 800px, 800px;}
+  max-width: 800px;
+}
 
+/* Combo box container for sets */
 .combo-box {
   display: flex;
   align-items: center;
   justify-content: center;
   flex-wrap: wrap;
   gap: 0.5rem;
-  background: rgba(255,255,255,0.05);
+  background: rgba(255, 255, 255, 0.05);
   border-radius: 1rem;
   padding: 1rem;
   animation: popIn 0.4s ease forwards;
   transform: scale(0.8);
 }
 
+/* Individual number/ball inside combo-box */
 .ball {
   width: 30px;
   height: 30px;
@@ -106,10 +70,10 @@ button:hover {
   animation: bounceIn 0.5s ease;
 }
 
+/* Display for a set with title */
 #setDisplay {
   text-align: center;
   margin-top: 1rem;
-  
 }
 
 #setDisplay h3 {
@@ -121,6 +85,7 @@ button:hover {
   flex-wrap: wrap;
 }
 
+/* Input circle for custom numbers */
 .name-input {
   width: 45px;
   height: 45px;
@@ -134,13 +99,13 @@ button:hover {
   box-shadow: 0 2px 4px rgba(0,0,0,0.2);
   transition: transform 0.2s;
 }
+
 .name-input:focus {
   outline: 2px solid white;
   transform: scale(1.1);
 }
 
-
-
+/* === Animations === */
 @keyframes bounceIn {
   0% { transform: translateY(-20px) scale(0.7); opacity: 0; }
   60% { transform: translateY(5px) scale(1.1); opacity: 1; }
@@ -151,7 +116,3 @@ button:hover {
   to { transform: scale(1); opacity: 1; }
 }
 
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(-20px); }
-  to { opacity: 1; transform: translateY(0); }
-}

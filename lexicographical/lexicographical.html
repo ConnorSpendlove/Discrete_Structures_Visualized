@@ -1,32 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Lexicographical Ordering Simulator</title>
-<link rel="stylesheet" href="lexicographical.css">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/Flip.min.js"></script>
-
-
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lexicographical Ordering Simulator</title>
+  <link rel="stylesheet" href="/global_styles.css">
+  <link rel="stylesheet" href="lexicographical.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/Flip.min.js"></script>
 </head>
 <body>
-  <header>
-    <h1>Lexicographical Ordering Simulator</h1>
-    <p>Explore the next permutations of a number in lexicographical order.</p>
-  </header>
-  
+  <!-- Navbar -->
+  <div id="navbar"></div>
+
   <main>
+    <header>
+      <h1>Lexicographical Ordering Simulator</h1>
+      <p>Explore the next permutations of a number in lexicographical order.</p>
+    </header>
+    
+    <!-- Controls -->
     <div class="controls">
       <input type="text" id="numberInput" maxlength="10" placeholder="Enter number (up to 10 digits)">
-      <input type="number" id="setsInput" min="1" value="5" placeholder="Number of sets to show">
+      <input type="number" id="setsInput" min="1" placeholder="Number of sets">
       <button id="generateBtn">Generate</button>
     </div>
-    
+
+    <!-- Results -->
     <section id="results"></section>
   </main>
-  
-  <!-- Modal for tutorial animation -->
+
+  <!-- Tutorial Modal -->
   <div id="tutorialModal" class="modal">
     <div class="modal-content">
       <span class="close">&times;</span>
@@ -34,7 +38,12 @@
       <div id="tutorialVisual"></div>
     </div>
   </div>
-  
+
+  <!-- Footer -->
+  <div id="footer"></div>
+
+  <!-- Scripts -->
+  <script src="/global_scripts.js"></script>
   <script src="lexicographical.js"></script>
 </body>
 </html>

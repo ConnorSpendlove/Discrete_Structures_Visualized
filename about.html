@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About - Discrete Structures Visualized</title>
+  <link rel="stylesheet" href="global_styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+</head>
+<body>
+    <style>
+        .about-section {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+.about-card {
+  background: rgba(255, 255, 255, 0.05);
+  padding: 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 6px 15px rgba(0,0,0,0.3);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.about-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 25px rgba(0,0,0,0.4);
+}
+
+.about-card h2 {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1.5rem;
+  color: #fcf7ff;
+}
+
+.about-card p, .about-card ul {
+  margin-top: 0.5rem;
+  font-size: 1rem;
+  color: #d0d0ff;
+}
+
+.about-card ul {
+  padding-left: 1.2rem;
+}
+
+.linkedin-link {
+  display: inline-block;
+  margin-top: 0.8rem;
+  color: #72a1e5;
+  font-weight: bold;
+  text-decoration: none;
+  transition: color 0.3s, transform 0.3s;
+}
+
+.linkedin-link i {
+  margin-right: 0.5rem;
+}
+
+.linkedin-link:hover {
+  color: #fcf7ff;
+  transform: translateX(5px);
+}
+
+    </style>
+
+  <!-- Navbar -->
+  <div id="navbar"></div>
+
+  <header>
+    <h1>About Discrete Structures Visualized</h1>
+    <p>Interactive math simulators for learning and exploration.</p>
+  </header>
+
+  <main>
+    <section class="about-section">
+
+      <div class="about-card">
+        <h2><i class="fas fa-bullseye"></i> Mission</h2>
+        <p>
+          Discrete Structures Visualized is designed to help students and enthusiasts explore mathematical concepts interactively. 
+          The goal is to make learning math fun, intuitive, and accessible for everyone.
+        </p>
+      </div>
+
+      <div class="about-card">
+        <h2><i class="fas fa-star"></i> Features</h2>
+        <ul>
+          <li>Permutation & Combination Simulator</li>
+          <li>Lexicographical Ordering Simulator</li>
+          <li>More interactive simulators coming soon!</li>
+        </ul>
+      </div>
+
+      <div class="about-card">
+        <h2><i class="fas fa-user"></i> About Me</h2>
+        <p>
+          Hi! I'm Connor, the creator of Discrete Structures Visualized. I’m a Software Development student with a passion for math and web development.
+          I built this project to combine my interests and help others learn.
+        </p>
+        <a href="https://www.linkedin.com/in/connorspendlove" target="_blank" class="linkedin-link">
+          <i class="fab fa-linkedin"></i> Connect with me on LinkedIn
+        </a>
+      </div>
+
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <div id="footer"></div>
+
+  <script src="global_scripts.js"></script>
+</body>
+</html>
