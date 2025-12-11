@@ -17,28 +17,41 @@ export default function(container) {
   const visualizer = container.querySelector("#textVisualizer");
   const result = container.querySelector("#matchResult");
 
-  function visualizeText(text, pattern, currentIndex, matchIndex) {
+  function visualizeText(text, startIdx, patternLength, matches) {
     visualizer.innerHTML = "";
-    text.split("").forEach((char, i) => {
+    for (let i = 0; i < text.length; i++) {
       const span = document.createElement("span");
-      span.textContent = char;
+      span.textContent = text[i];
       span.classList.add("text-char");
 
-      if (i >= currentIndex && i < currentIndex + pattern.length) {
+      // Highlight current window
+      if (i >= startIdx && i < startIdx + patternLength) {
         span.classList.add("current-window");
       }
-      if (matchIndex.includes(i)) {
+
+      // Highlight confirmed matches
+      if (matches.includes(i)) {
         span.classList.add("match");
       }
 
       visualizer.appendChild(span);
-    });
+    }
   }
 
   async function naiveSearch(text, pattern) {
-    const matches = [];
+    const matchStartIndices = [];
+
     for (let i = 0; i <= text.length - pattern.length; i++) {
-      visualizeText(text, pattern, i, matches);
+      // Visualize current window and previous matches
+      visualizeText(
+        text,
+        i,
+        pattern.length,
+        matchStartIndices.flatMap(start =>
+          Array.from({ length: pattern.length }, (_, j) => start + j)
+        )
+      );
+
       await new Promise(res => setTimeout(res, 400));
 
       let match = true;
@@ -50,15 +63,11 @@ export default function(container) {
       }
 
       if (match) {
-        for (let k = i; k < i + pattern.length; k++) {
-          matches.push(k);
-        }
-        visualizeText(text, pattern, i, matches);
-        await new Promise(res => setTimeout(res, 400));
+        matchStartIndices.push(i); // store starting index only
       }
     }
 
-    return matches;
+    return matchStartIndices;
   }
 
   btn.addEventListener("click", async () => {
@@ -72,12 +81,14 @@ export default function(container) {
     }
 
     result.textContent = "Visualizing...";
-    const matchIndices = await naiveSearch(text, pattern);
+    const matchStartIndices = await naiveSearch(text, pattern);
 
-    if (matchIndices.length > 0) {
-      result.textContent = `Pattern found at positions: ${matchIndices.map((_, idx) => idx + 1).join(", ")}`;
+    if (matchStartIndices.length > 0) {
+      result.textContent = `Pattern found at positions: ${matchStartIndices
+        .map(i => i + 1)
+        .join(", ")}`;
     } else {
       result.textContent = "Pattern not found.";
     }
   });
-};
+}
