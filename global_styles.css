@@ -145,3 +145,55 @@ button:hover, a.button-link:hover {
 .footer a:hover {
   text-decoration: underline;
 }
+
+/* === Mobile Responsive Styles === */
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: column;
+    gap: 1rem;
+    text-align: center;
+  }
+
+  .navbar ul {
+    flex-direction: column;
+    gap: 0.8rem;
+  }
+
+  input {
+    width: 100%;
+    margin: 0 0 1rem 0;
+  }
+
+  main {
+    padding: 1.5rem 1rem;
+  }
+
+  .simulator-buttons {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .simulator-buttons a.button-link {
+    flex: 1 1 auto;
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  header {
+    margin-top: 1.2rem;
+  }
+
+  header h1 {
+    font-size: 1.2rem;
+  }
+
+  .navbar .logo {
+    font-size: 1.1rem;
+  }
+
+  .sim-btn {
+    font-size: 1rem;
+    padding: 0.8rem;
+  }
+}
