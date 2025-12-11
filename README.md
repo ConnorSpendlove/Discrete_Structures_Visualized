@@ -20,12 +20,13 @@ Through this project, I aimed to:
 
 The project is presented as an interactive web application with responsive design, allowing users to input data, run simulations, and observe real-time algorithm steps. This combines computer programming with discrete mathematics theory, providing a hands-on learning experience.
 
-## References
+## References (APA)
+Rosen, K. (2018). Discrete Mathematics and Its Applications: 2025 Release. McGraw-Hill Higher Education (US).
+---
+GeeksforGeeks. (2025, July 23). Binary insertion sort. https://www.geeksforgeeks.org/dsa/binary-insertion-sort/ 
+---
 
-### MLA
-Rosen, Kenneth. *Discrete Mathematics and Its Applications: 2025 Release.* Southern Utah University, McGraw-Hill Higher Education (US), 2018.
-
-### Tech Stack
+## Tech Stack
 
 ![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)
 ![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)
