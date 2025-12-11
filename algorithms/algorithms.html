@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Algorithms - DSV</title>
+  <link rel ="stylesheet" href="../global_styles.css" />
+  <link rel="stylesheet" href="algorithms.css">
+  <script src="../global_scripts.js"></script>
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest">
+</head>
+<body>
+  <!-- Navbar -->
+<nav class="navbar">
+  <a href="/index.html" class="logo">Discrete Structures Visualized</a>
+
+  <div class="hamburger" id="hamburger">☰</div>
+
+  <!-- Dim Background -->
+  <div id="overlay" class="overlay"></div>
+
+  <!-- Sidebar Menu -->
+  <div class="mobile-menu" id="mobileMenu">
+    <div class="close-btn" id="closeBtn">✕</div>
+
+    <a href="/index.html">Home</a>
+    <a href="/about.html">About</a>
+  </div>
+
+  <ul class="desktop-menu">
+    <li><a href="/index.html">Home</a></li>
+    <li><a href="/about.html">About</a></li>
+  </ul>
+</nav>
+    <!-- Header -->
+    <header>
+        <h1>Algorithm Visualizer</h1>
+        <p>Select an algorithm to visualize</p>
+    </header>
+
+<main>
+        <section class="algo-grid">
+
+            <!-- Each of these tiles links to a placeholder page for now -->
+            <a href="#" class="algo-card">Find the largest integer in a list</a>
+            <a href="#" class="algo-card">Find first + last occurrence of largest integer</a>
+            <a href="#" class="algo-card">Linear search (distinct integers)</a>
+            <a href="#" class="algo-card">Binary search (ordered list)</a>
+            <a href="#" class="algo-card">Bubble sort</a>
+            <a href="#" class="algo-card">Insertion sort</a>
+            <a href="#" class="algo-card">Naive string matching</a>
+            <a href="#" class="algo-card">Cashier’s algorithm (coin change)</a>
+            <a href="#" class="algo-card">Greedy talk scheduling</a>
+            <a href="#" class="algo-card">Comparison count: Linear vs Binary search</a>
+            <a href="#" class="algo-card">Comparison count: Bubble vs Insertion sort</a>
+
+        </section>
+    </main>
+
+    <!-- Visualization Modal / Area -->
+<div id="visualizerModal" class="visualizer-modal">
+  <div class="visualizer-content">
+    <span id="closeVisualizer" class="close-btn">✕</span>
+    <div id="visualizerArea"></div>
+  </div>
+</div>
+
+
+  <!-- Footer -->
+<footer class="footer">
+  &copy; 2025 Connor Spendlove | <a href="/contact.html">Contact</a>
+</footer>
+<script src="algorithms_main.js"></script>
+</body>
+</html>

@@ -1,0 +1,148 @@
+/* Algorithm Grid */
+.algo-grid {
+  margin-top: 2rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.3rem;
+}
+
+.algo-card {
+  background: #72a1e5;
+  color: #14110f;
+  padding: 1.2rem;
+  border-radius: 12px;
+  font-size: 1rem;
+  text-decoration: none;
+  font-weight: 600;
+
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  transition: 0.25s ease;
+}
+
+.algo-card:hover {
+  background: #54428e;
+  color: #fcf7ff;
+  transform: scale(1.04);
+}
+
+/* Overlay for dimming background */
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.55);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+  z-index: 5;
+}
+
+.overlay.visible {
+  opacity: 1;
+  pointer-events: all;
+}
+
+/* Visualization Modal */
+.visualizer-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.7);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 100;
+}
+
+.visualizer-modal.active {
+  display: flex;
+}
+
+.visualizer-content {
+  background: #fcf7ff;
+  color: #14110f;
+  border-radius: 12px;
+  padding: 2rem;
+  max-width: 900px;
+  width: 95%;
+  max-height: 90%;
+  overflow-y: auto;
+  position: relative;
+}
+
+#visualizerArea {
+  margin-top: 1rem;
+}
+
+/* Close button */
+.visualizer-content .close-btn {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  font-size: 28px;
+  cursor: pointer;
+  color: #54428e;
+}
+
+
+/* Input row for small screens */
+.input-row {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  margin-bottom: 1rem;
+}
+
+/* Bars for visualization */
+.array-container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  overflow-x: auto;
+  padding: 1rem;
+  min-height: 50px;
+  border: 1px solid #54428e;
+  border-radius: 8px;
+  background: #fcf7ff;
+}
+
+.array-bar {
+  height: 30px;
+  background-color: #72a1e5;
+  border-radius: 6px;
+  transition: background 0.3s;
+  min-width: 10px; /* ensure small numbers are visible */
+}
+
+.array-bar-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.array-bar.current {
+  background-color: #1e0a74;
+}
+
+.array-bar.max {
+  background-color: #54428e;
+  color: #fcf7ff;
+}
+
+.bar-label {
+  width: 30px;
+  text-align: right;
+  font-weight: bold;
+  color: #14110f;
+}
+
+
+/* Responsive adjustments */
+@media (max-width: 480px) {
+  .array-bar {
+    height: 25px;
+  }
+  .bar-label {
+    width: 25px;
+    font-size: 0.8rem;
+  }
+}
+
