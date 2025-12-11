@@ -11,7 +11,28 @@
 </head>
 <body>
   <!-- Navbar -->
-  <div id="navbar"></div>
+<nav class="navbar">
+  <a href="/index.html" class="logo">Discrete Structures Visualized</a>
+
+  <div class="hamburger" id="hamburger">☰</div>
+
+  <!-- Dim Background -->
+  <div id="overlay" class="overlay"></div>
+
+  <!-- Sidebar Menu -->
+  <div class="mobile-menu" id="mobileMenu">
+    <div class="close-btn" id="closeBtn">✕</div>
+
+    <a href="/index.html">Home</a>
+    <a href="/about.html">About</a>
+  </div>
+
+  <ul class="desktop-menu">
+    <li><a href="/index.html">Home</a></li>
+    <li><a href="/about.html">About</a></li>
+  </ul>
+</nav>
+
 
   <main>
     <header>
@@ -40,7 +61,9 @@
   </div>
 
   <!-- Footer -->
-  <div id="footer"></div>
+<footer class="footer">
+  &copy; 2025 Connor Spendlove | <a href="/contact.html">Contact</a>
+</footer>
 
   <!-- Scripts -->
   <script src="/global_scripts.js"></script>
