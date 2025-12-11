@@ -1,0 +1,77 @@
+.talk-visualizer {
+  margin-top: 1rem;
+  border: 1px solid #54428e;
+  background: #fcf7ff;
+  border-radius: 8px;
+  padding: 1rem;
+  overflow-x: auto;
+  position: relative;
+}
+
+/* Timeline */
+.timeline {
+  position: relative;
+  height: 20px;
+  margin-bottom: 10px;
+  border-bottom: 2px solid #54428e;
+}
+
+.timeline-tick {
+  position: absolute;
+  bottom: 0;
+  font-size: 0.7rem;
+  transform: translateX(-50%);
+  color: #54428e;
+}
+
+/* Each row for a talk */
+.talk-row {
+  position: relative;
+  height: 50px;
+  margin-bottom: 0.5rem;
+}
+
+/* Talk bars */
+.talk-bar {
+  position: absolute;
+  top: 0;
+  height: 40px;
+  background-color: #72a1e5;
+  color: #fcf7ff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  border-radius: 6px;
+  transition: background 0.3s;
+}
+
+.talk-bar.current {
+  background-color: #1e0a74; 
+}
+
+.talk-bar.selected {
+  background-color: #54428e; 
+}
+
+.talk-bar.rejected {
+  background-color: #fcf7ff; /* rejected talk */
+  color: #14110f;
+  border: 2px solid #54428e;
+}
+
+/* Responsive adjustments */
+@media (max-width: 480px) {
+  .timeline-tick {
+    font-size: 0.6rem;
+  }
+
+  .talk-row {
+    height: 35px;
+  }
+
+  .talk-bar {
+    font-size: 0.7rem;
+    height: 30px;
+  }
+}

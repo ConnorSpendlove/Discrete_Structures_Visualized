@@ -13,7 +13,7 @@ document.addEventListener("DOMContentLoaded", () => {
     "bubbleSort.js",
     "insertionSort.js",
     "naiveStringMatch.js",
-    "cashiersAlgorithm.js",
+    "cashier.js",
     "greedyScheduling.js",
     "searchComparison.js",
     "sortComparison.js"
