@@ -7,7 +7,7 @@
 
 body {
   font-family: 'Poppins', sans-serif;
-  background: linear-gradient(160deg, #14110f, #090255);
+  background-color: #090255;
   color: #fcf7ff;
   line-height: 1.6;
   min-height: 100vh;
@@ -275,6 +275,10 @@ button:hover, a.button-link:hover {
 
   header h1 {
     font-size: 1.2rem;
+  }
+
+  header p {
+    padding: 10px;
   }
 
   .navbar .logo {
