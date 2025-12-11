@@ -1,0 +1,82 @@
+/* Binary Search Visualizer */
+
+.binary-array-container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  overflow-x: auto;
+  padding: 1rem;
+  min-height: 50px;
+  border: 1px solid #54428e;
+  border-radius: 8px;
+  background: #fcf7ff;
+}
+
+.binary-bar-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.binary-bar-label {
+  width: 30px;
+  text-align: right;
+  font-weight: bold;
+  color: #14110f;
+}
+
+.binary-bar {
+  height: 30px;
+  background-color: #72a1e5;
+  border-radius: 6px;
+  transition: background 0.3s;
+  min-width: 10px;
+}
+
+.binary-bar.current {
+  background-color: #1e0a74; /* current element highlight */
+  color: #fcf7ff;
+}
+
+.binary-bar.found {
+  background-color: #3fe08c; /* green for found */
+  color: #fcf7ff;
+}
+
+/* Input row for binary search */
+.binary-input-row {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  margin-bottom: 1rem;
+}
+
+.binary-bar.active-range {
+  background-color: #72a1e5; /* normal active bars */
+}
+
+.binary-bar.inactive {
+  background-color: #d0d0d0; /* dimmed for excluded elements */
+}
+
+.binary-bar.current {
+  background-color: #1e0a74; /* midpoint highlight */
+  color: #fcf7ff;
+}
+
+.binary-bar.found {
+  background-color: #3fe08c; /* green for found */
+  color: #fcf7ff;
+}
+
+
+/* Responsive adjustments */
+@media (max-width: 480px) {
+  .binary-bar {
+    height: 25px;
+  }
+  .binary-bar-label {
+    width: 25px;
+    font-size: 0.8rem;
+  }
+}

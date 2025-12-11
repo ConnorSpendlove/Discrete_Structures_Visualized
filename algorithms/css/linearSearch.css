@@ -1,0 +1,63 @@
+/* Linear Search Visualizer */
+
+.linear-array-container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  overflow-x: auto;
+  padding: 1rem;
+  min-height: 50px;
+  border: 1px solid #54428e;
+  border-radius: 8px;
+  background: #fcf7ff;
+}
+
+.linear-bar-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.linear-bar-label {
+  width: 30px;
+  text-align: right;
+  font-weight: bold;
+  color: #14110f;
+}
+
+.linear-bar {
+  height: 30px;
+  background-color: #72a1e5;
+  border-radius: 6px;
+  transition: background 0.3s;
+  min-width: 10px;
+}
+
+.linear-bar.current {
+  background-color: #1e0a74;
+  color: #14110f;
+}
+
+.linear-bar.found {
+  background-color: #3fe08c; /* green highlight for found value */
+  color: #fcf7ff;
+}
+
+/* Input row for linear search */
+.linear-input-row {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  margin-bottom: 1rem;
+}
+
+/* Responsive adjustments */
+@media (max-width: 480px) {
+  .linear-bar {
+    height: 25px;
+  }
+  .linear-bar-label {
+    width: 25px;
+    font-size: 0.8rem;
+  }
+}

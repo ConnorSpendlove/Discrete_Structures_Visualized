@@ -1,0 +1,9 @@
+.array-bar.first {
+  background-color: #e08c3f; /* orange for first occurrence */
+  color: #fcf7ff;
+}
+
+.array-bar.last {
+  background-color: #3fe08c; /* green for last occurrence */
+  color: #fcf7ff;
+}
