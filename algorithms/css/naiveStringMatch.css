@@ -1,0 +1,43 @@
+.text-visualizer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  padding: 1rem;
+  border: 1px solid #54428e;
+  border-radius: 8px;
+  background: #fcf7ff;
+  font-family: monospace;
+  min-height: 50px;
+}
+
+.text-char {
+  padding: 4px 6px;
+  border-radius: 4px;
+  transition: background 0.3s, color 0.3s;
+}
+
+.current-window {
+  background-color: #1e0a74;
+  color: #fcf7ff;
+}
+
+.match {
+  background-color: #3fe08c;
+  color: #14110f;
+}
+
+/* Input row */
+.string-input-row {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  margin-bottom: 1rem;
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+  .text-char {
+    padding: 3px 4px;
+    font-size: 0.9rem;
+  }
+}

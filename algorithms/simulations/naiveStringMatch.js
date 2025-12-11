@@ -17,32 +17,28 @@ export default function(container) {
   const visualizer = container.querySelector("#textVisualizer");
   const result = container.querySelector("#matchResult");
 
-  function visualizeText(text, startIdx, patternLength, matches) {
+  function visualizeText(text, pattern, currentIndex, matchIndex) {
     visualizer.innerHTML = "";
-    for (let i = 0; i < text.length; i++) {
+    text.split("").forEach((char, i) => {
       const span = document.createElement("span");
-      span.textContent = text[i];
+      span.textContent = char;
       span.classList.add("text-char");
 
-      if (i >= startIdx && i < startIdx + patternLength) {
-        span.classList.add("current-window"); // window being checked
+      if (i >= currentIndex && i < currentIndex + pattern.length) {
+        span.classList.add("current-window");
       }
-
-      if (matches.includes(i)) {
-        span.classList.add("match"); // confirmed matches
+      if (matchIndex.includes(i)) {
+        span.classList.add("match");
       }
 
       visualizer.appendChild(span);
-    }
+    });
   }
 
   async function naiveSearch(text, pattern) {
-    const matchStartIndices = [];
-
+    const matches = [];
     for (let i = 0; i <= text.length - pattern.length; i++) {
-      visualizeText(text, i, pattern.length, matchStartIndices.flatMap(start =>
-        Array.from({ length: pattern.length }, (_, j) => start + j)
-      ));
+      visualizeText(text, pattern, i, matches);
       await new Promise(res => setTimeout(res, 400));
 
       let match = true;
@@ -54,11 +50,15 @@ export default function(container) {
       }
 
       if (match) {
-        matchStartIndices.push(i); // store **starting index only**
+        for (let k = i; k < i + pattern.length; k++) {
+          matches.push(k);
+        }
+        visualizeText(text, pattern, i, matches);
+        await new Promise(res => setTimeout(res, 400));
       }
     }
 
-    return matchStartIndices;
+    return matches;
   }
 
   btn.addEventListener("click", async () => {
@@ -72,10 +72,10 @@ export default function(container) {
     }
 
     result.textContent = "Visualizing...";
-    const matchStartIndices = await naiveSearch(text, pattern);
+    const matchIndices = await naiveSearch(text, pattern);
 
-    if (matchStartIndices.length > 0) {
-      result.textContent = "Position(s) found!";
+    if (matchIndices.length > 0) {
+      result.textContent = `Pattern found at positions: ${matchIndices.map((_, idx) => idx + 1).join(", ")}`;
     } else {
       result.textContent = "Pattern not found.";
     }
