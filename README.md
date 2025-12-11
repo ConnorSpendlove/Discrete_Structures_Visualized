@@ -5,7 +5,7 @@
 ---
 
 ## 🌐 Live Demo  
-https://discrete-structures-visualized-ethbgcrmd.vercel.app/lexicographical/lexicographical.html
+https://discrete-structures-visualized.vercel.app/index.html
 ---
 
 ## 🧩 Current Simulators
