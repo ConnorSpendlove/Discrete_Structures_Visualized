@@ -165,8 +165,8 @@ button:hover, a.button-link:hover {
   right: -280px; 
   width: 280px;
   height: 100%;
-  background: #72a1e5;
-  border-left: 6px solid #1e0a74;
+  background: #1e0a74; 
+  border-left: 3px solid #72a1e5;
   box-shadow: -5px 0 15px rgba(0,0,0,0.3);
   padding: 70px 25px;
   display: flex;
